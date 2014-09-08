@@ -1,0 +1,5 @@
+2 字符串的编码
+用 u'汉字' 构造出来的是unicode类型，不用的话构造出来是str类型 
+str的编码是与系统环境相关的，一般就是sys.getfilesystemencoding()得到的值 
+所以从unicode转str，要用encode方法 
+从str转unicode，所以要用decode
