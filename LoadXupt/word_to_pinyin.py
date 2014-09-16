@@ -15,16 +15,23 @@ def convert(ch):
     with open(r'./convert-utf-8.txt') as f:
         for line in f:
             if ch in line:
+#				print (line[length:len(line)-3])
+
                 return line[length:len(line)-3]
 def Get_pinyin(word):
 	i = 0
 	pinyin = ''
+#	word = Myword.encode('utf-8')
 	while i < len(word) / len('符'):
 		simple_world = word.decode('utf-8')[i:i+1].encode('utf-8')
+		print simple_world
+#		simple_world = word[i:i+1].encode('utf-8')
 		pinyin += convert(simple_world)
 		i += 1
+#	print pinyin
 	return pinyin
 
-if __name__ == "__main__":
-	word = raw_input('Please input the word')
-	print Get_pinyin(word)
+#if __name__ == "__main__":
+#	word = raw_input("Please input the word")
+#	print (word)
+#	print (Get_pinyin(word))

@@ -1,0 +1,12 @@
+#! /usr/bin/python
+#coding=utf-8
+
+import word_to_pinyin as convert
+import codecs
+
+def main():
+	result = convert.Get_pinyin()
+	print (result)
+
+if __name__ == '__main__':
+	main()
