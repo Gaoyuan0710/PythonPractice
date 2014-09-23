@@ -24,7 +24,7 @@ def Get_pinyin(word):
 #	word = Myword.encode('utf-8')
 	while i < len(word) / len('符'):
 		simple_world = word.decode('utf-8')[i:i+1].encode('utf-8')
-		print simple_world
+#		print simple_world
 #		simple_world = word[i:i+1].encode('utf-8')
 		pinyin += convert(simple_world)
 		i += 1

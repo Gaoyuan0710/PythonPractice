@@ -8,10 +8,23 @@ import sys
 
 
 accounts = [
-	('1203210017', 'qwertyuiop'),
+	#('wangziyu', '111111'),
 	#('5022', '5022'),
 ]
 
+def get_accounts():
+	output = open('final.txt', 'r')
+	for name in output:
+		print name
+		accounts.append(name)
+		print len(accounts)
+	output.close()
+
+def get_result(name):
+	input = open('import.txt', 'a')
+	input.write('\n')
+	input.write(name)
+	input.close()
 
 def login(browser, (user_name, user_pwd)):
 	
@@ -24,7 +37,9 @@ def login(browser, (user_name, user_pwd)):
 	user_pwd_element.send_keys(user_pwd)
 
 	login_button_element = browser.find_element_by_id('id_lable_loginbutton_auth')
+	
 	login_button_element.click()
+
 
 
 def close_browser(browser):
@@ -38,6 +53,7 @@ def close_browser(browser):
 
 def main():
 
+	result = ''
 	browser = None
 	current_account = 0
 	
@@ -53,6 +69,8 @@ def main():
 	logger.setLevel(logging.DEBUG)
 	logger.addHandler(handler_stdout)
 	logger.addHandler(handler_file)
+
+	get_accounts()
 
 	while True:
 	
@@ -86,6 +104,7 @@ def main():
 					
 					logger.info('Try to login as ' + accounts[current_account][0] + ' ...')
 					login(browser, accounts[current_account])
+					result = accounts[current_account][0]
 					
 					current_account = (current_account + 1) % len(accounts)
 					
@@ -96,8 +115,11 @@ def main():
 					close_browser(browser)
 			else:
 				logger.info('The connection is OK')
+				get_result(result)
+				closer_browser(browser)
 			
 			logger.info('Sleep for 30 seconds ...')
+			closer_browser(browser)
 			time.sleep(30)
 
 		except KeyboardInterrupt:
